@@ -1,9 +1,3 @@
--- =====================================================
--- Desa Pagerkidul — Supabase backend schema
--- Run this in the Supabase SQL Editor (one go).
--- Then run seed.sql for starter content.
--- =====================================================
-
 -- ---------- content tables ----------
 
 create table if not exists perangkat_desa (
