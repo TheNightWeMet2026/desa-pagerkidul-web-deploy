@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Admin Dashboard - Desa Pagerkidul</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Existing public theme CSS (match the site theme) -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Admin dashboard styling -->
+    <link rel="stylesheet" href="assets/css/admin.css" />
+</head>
+
+<body>
+<div class="admin-shell">
+
+        <!-- Mobile Sidebar opener -->
+        <button id="mobileSidebarOpen" class="d-lg-none position-fixed top-0 start-0 m-3 icon-btn" type="button"
+            aria-label="Open Sidebar" style="z-index:60;">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <!-- Left Sidebar -->
+<aside class="admin-sidebar" id="adminSidebar">
+            
+            <div class="admin-sidebar-inner">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="admin-brand">
+                        <img src="assets/images/logo-pacitan.jpg" alt="Logo Desa" />
+                        <div>
+                            <h1>Desa Pagerkidul</h1>
+                            <small>Pemerintah Desa • Admin</small>
+                        </div>
+                    </div>
+                    <button id="mobileSidebarClose" class="d-lg-none icon-btn ms-2" type="button"
+                        aria-label="Close Sidebar">
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+
+                <button id="sidebarToggle" class="admin-sidebar-toggle" type="button">
+                    <span><i class="bi bi-grid-3x3-gap-fill me-2"></i>Menu</span>
+                    <i class="bi bi-chevron-left"></i>
+                </button>
+
+                <nav class="admin-nav">
+                    <div class="nav-title">Navigasi</div>
+                    <ul class="list-unstyled m-0">
+                        <li class="nav-item"><a class="nav-link active" href="#dashboard"><i
+                                    class="bi bi-speedometer2"></i><span>Dashboard</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#hero"><i class="bi bi-images"></i><span>Bagian
+                                    Hero</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#profil"><i class="bi bi-person-badge"></i><span>Profil Desa</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#officials"><i class="bi bi-people-fill"></i><span>Perangkat Desa</span></a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#potentials"><i
+                                    class="bi bi-tree-fill"></i><span>Potensi Desa</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#umkm"><i class="bi bi-shop"></i><span>Produk
+                                    UMKM</span></a></li>
+
+                        <li class="nav-item"><a class="nav-link" href="#location"><i
+                                    class="bi bi-geo-alt-fill"></i><span>Lokasi Desa</span></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#settings"><i
+                                    class="bi bi-gear"></i><span>Pengaturan</span></a></li>
+                                <li class="nav-item mt-2"><a class="nav-link" href="#logout"><i
+                                    class="bi bi-box-arrow-right"></i><span>Keluar</span></a></li>
+
+                    </ul>
+                </nav>
+
+                <div class="mt-auto">
+                    <div class="admin-nav" style="padding:14px;">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div>
+                                <div class="fw-bold" style="color:#166534;">Status Sistem</div>
+                                <div class="text-muted" style="font-size:13px; font-weight:700;">All Services OK</div>
+                            </div>
+                            <span class="pill ok">OK</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div id="sidebarBackdrop" class="sidebar-backdrop" aria-hidden="true"></div>
+
+        <!-- Main -->
+        <main class="admin-main">
+
+            <!-- Topbar -->
+            <header class="admin-topbar">
+                <div class="container-fluid">
+                    <div class="row align-items-center g-3">
+                        <div class="col-lg-4 col-md-5">
+                            <div class="position-relative search-wrap">
+                                <span class="search-icon"><i class="bi bi-search"></i></span>
+                                <input type="search" class="form-control" placeholder="Cari data & konten..."
+                                    aria-label="Search" />
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 d-flex gap-2">
+                            <button class="icon-btn" type="button" aria-label="Notifications">
+                                <i class="bi bi-bell"></i>
+                            </button>
+                            <button class="icon-btn" type="button" aria-label="Quick Actions">
+                                <i class="bi bi-shield-check"></i>
+                            </button>
+                        </div>
+
+                        <div class="col-lg-5 col-md-4 d-flex align-items-center justify-content-end gap-3">
+                            <div class="admin-date" id="currentDate">—</div>
+                            <div class="dropdown">
+                                <button class="admin-profile-pill btn btn-light d-flex align-items-center gap-2"
+                                    type="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                    style="border-radius:999px;">
+                                    <img class="admin-avatar" src="assets/images/foto.jpg" alt="Admin" />
+                                    <span class="fw-bold" style="font-size:14px;">Admin</span>
+                                    <i class="bi bi-chevron-down" style="color:#166534;"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="dropdown-item" href="#profile">Profil</a></li>
+                                    <li><a class="dropdown-item" href="#security">Keamanan</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item text-danger" href="#logout"
+                                            onclick="return false;">Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <section class="admin-content">
+                <div class="container-fluid">
+
+                    <!-- Dashboard Cards -->
+                    <div id="dashboard" class="row g-3">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-top">
+                                    <div>
+                                        <h3>Total Village Officials</h3>
+                                        <div class="stat-number">18</div>
+                                        <p class="stat-desc">Anggota perangkat desa aktif</p>
+                                    </div>
+                                    <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-top">
+                                    <div>
+                                        <h3>Total UMKM Products</h3>
+                                        <div class="stat-number">12</div>
+                                        <p class="stat-desc">Produk unggulan UMKM desa</p>
+                                    </div>
+                                    <div class="stat-icon"><i class="bi bi-shop"></i></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="stat-card">
+                                <div class="stat-top">
+                                    <div>
+                                        <h3>Total Village Potentials</h3>
+                                        <div class="stat-number">7</div>
+                                        <p class="stat-desc">Potensi pertanian & wisata</p>
+                                    </div>
+                                    <div class="stat-icon"><i class="bi bi-tree-fill"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-2">
+                        <!-- Main column -->
+                        <div class="col-lg-8">
+
+                            <!-- 1. HERO MANAGEMENT -->
+                            <div id="hero" class="admin-card admin-section">
+                                <div class="admin-section-header">
+<h2><i class="bi bi-megaphone"></i> PENGELOLAAN HERO</h2>
+                                    <p>Kelola gambar, judul, dan tombol utama pada halaman publik.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="row g-3 align-items-stretch">
+                                        <div class="col-md-6">
+                                            <div class="uploader h-100">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="fw-bold" style="color:#166534;">Gambar Hero</div>
+                                                    <span class="pill ok">Preview</span>
+                                                </div>
+                                                <img class="preview-img mt-3" src="assets/images/desa.JPG" alt="Hero" />
+                                                <div class="mt-3">
+                                                    <button class="btn btn-sm btn-outline-admin"><i
+                                                            class="bi bi-upload"></i> Upload (Placeholder)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="uploader h-100">
+                                                <div class="fw-bold" style="color:#166534;">Konten</div>
+                                                <div class="mt-3">
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-bold">Title</label>
+                                                        <div class="form-control-plaintext fw-semibold">Selamat Datang
+                                                            di <span style="color:#166534;">Desa Pagerkidul</span></div>
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <label class="form-label fw-bold">Subtitle</label>
+                                                        <div class="form-control-plaintext fw-semibold">Portal resmi
+                                                            pemerintah desa sebagai pusat informasi & pelayanan.</div>
+                                                    </div>
+                                                    <div class="row g-2">
+                                                        <div class="col-7">
+                                                            <label class="form-label fw-bold">Button Text</label>
+                                                            <div class="form-control-plaintext fw-semibold">Jelajahi
+                                                                Desa</div>
+                                                        </div>
+                                                        <div class="col-5">
+                                                            <label class="form-label fw-bold">Button Link</label>
+                                                            <div class="form-control-plaintext fw-semibold">#profil
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex gap-2 mt-4 flex-wrap">
+                                                    <button class="btn btn-primary-admin btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#editModal" data-title="Hero"
+                                                        data-body="Mengubah judul, subtitle, tombol, dan gambar hero.">
+                                                        <i class="bi bi-pencil-square"></i> Edit
+                                                    </button>
+                                                    <button class="btn btn-outline-admin btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#previewModal" data-title="Hero Section"
+                                                        data-body="Preview konten hero saat ini."
+                                                        data-media="assets/images/desa.JPG">
+                                                        <i class="bi bi-eye"></i> Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="mt-3 d-flex justify-content-end">
+                                        <button class="btn btn-primary-admin" data-bs-toggle="modal"
+                                            data-bs-target="#addModal"><i class="bi bi-plus-circle"></i> Add
+                                            Data</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. VILLAGE PROFILE -->
+                            <div id="profil" class="admin-card admin-section">
+                                <div class="admin-section-header">
+<h2><i class="bi bi-person-badge"></i> PROFIL DESA</h2>
+                                    <p>Kelola visi, misi, deskripsi, dan gambar profil desa.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="row g-3">
+                                        <div class="col-md-5">
+                                            <div class="uploader">
+                                                <div class="fw-bold" style="color:#166534;">Gambar</div>
+                                                <img class="preview-img mt-3" src="assets/images/desa.JPG"
+                                                    alt="Profil" />
+                                                <div class="mt-3">
+                                                    <button class="btn btn-sm btn-outline-admin"><i
+                                                            class="bi bi-upload"></i> Upload (Placeholder)</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-7">
+                                            <div class="row g-3">
+                                                <div class="col-12">
+                                                    <div class="bg-light rounded-20 p-3 border">
+                                                        <div class="fw-bold mb-2" style="color:#166534;"><i
+                                                                class="bi bi-bullseye"></i> Vision</div>
+                                                        <div class="text-muted fw-semibold">Mewujudkan Desa Pagerkidul
+                                                            yang maju, mandiri, transparan, sejahtera, dan berbasis
+                                                            teknologi informasi.</div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="bg-light rounded-20 p-3 border">
+                                                        <div class="fw-bold mb-2" style="color:#166534;"><i
+                                                                class="bi bi-flag-fill"></i> Mission</div>
+                                                        <ul class="mb-0 text-muted fw-semibold"
+                                                            style="line-height:1.9;">
+                                                            <li>Pemerintahan Transparan</li>
+                                                            <li>Pelayanan Publik Digital</li>
+                                                            <li>Pengembangan Potensi Desa</li>
+                                                            <li>Informasi Terpercaya</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="bg-light rounded-20 p-3 border">
+                                                        <div class="fw-bold mb-2" style="color:#166534;"><i
+                                                                class="bi bi-file-text"></i> Description</div>
+                                                        <div class="text-muted fw-semibold">Desa Pagerkidul merupakan
+                                                            salah satu desa di Kabupaten Pacitan yang terus
+                                                            mengembangkan pelayanan publik berbasis informasi.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="d-flex gap-2 mt-3 flex-wrap">
+                                                <button class="btn btn-primary-admin btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#editModal" data-title="Village Profile"
+                                                    data-body="Mengedit visi, misi, deskripsi, serta gambar profil.">
+                                                    <i class="bi bi-pencil-square"></i> Edit
+                                                </button>
+                                                <button class="btn btn-outline-admin btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#previewModal" data-title="Village Profile"
+                                                    data-body="Preview profil desa."
+                                                    data-media="assets/images/desa.JPG">
+                                                    <i class="bi bi-eye"></i> Preview
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 3. VILLAGE OFFICIALS -->
+                            <div id="officials" class="admin-card admin-section">
+                                <div class="admin-section-header">
+<h2><i class="bi bi-people-fill"></i> PERANGKAT DESA</h2>
+                                    <p>Kelola foto dan data perangkat desa.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="d-flex gap-2 align-items-center justify-content-between flex-wrap">
+                                        <button class="btn btn-primary-admin" data-bs-toggle="modal"
+                                            data-bs-target="#addModal"><i class="bi bi-plus-circle"></i> Add
+                                            Data</button>
+                                        <div class="position-relative" style="min-width:280px;">
+                                            <i class="bi bi-search position-absolute"
+                                                style="left:14px;top:50%;transform:translateY(-50%);color:#166534;"></i>
+                                            <input type="search" class="form-control ps-5 rounded-4"
+                                                placeholder="Cari nama / posisi / telepon..."
+                                                data-table-filter="tblOfficials" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-card">
+                                    <div class="table-responsive">
+                                        <table id="tblOfficials" class="table table-hover align-middle"
+                                            aria-label="Village Officials Table">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:64px;">Photo</th>
+                                                    <th>Name</th>
+                                                    <th>Position</th>
+                                                    <th style="width:170px;">Phone</th>
+                                                    <th style="width:260px;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><img src="assets/images/foto.jpg" class="rounded-4"
+                                                            style="width:48px;height:48px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Foto" /></td>
+                                                    <td>Nama Kepala Desa</td>
+                                                    <td class="text-muted">Kepala Desa</td>
+                                                    <td class="text-muted">08xxxxxxxxxx</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Kepala Desa"
+                                                                data-media="assets/images/foto.jpg"
+                                                                data-body="Preview profil perangkat desa: Nama Kepala Desa."
+                                                                type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                data-edit-title="Kepala Desa"
+                                                                data-edit-fielda="Nama Kepala Desa"
+                                                                data-edit-fieldb="Kepala Desa"
+                                                                data-edit-description="Preview profil perangkat desa: Nama Kepala Desa."
+                                                                data-edit-media="assets/images/foto.jpg" type="button">
+                                                                <i class="bi bi-pencil"></i> Edit
+                                                            </button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button">
+                                                                <i class="bi bi-trash"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td><img src="assets/images/foto.jpg" class="rounded-4"
+                                                            style="width:48px;height:48px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Foto" /></td>
+                                                    <td>Nama Sekretaris</td>
+                                                    <td class="text-muted">Sekretaris Desa</td>
+                                                    <td class="text-muted">08xxxxxxxxxx</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Sekretaris Desa"
+                                                                data-media="assets/images/foto.jpg"
+                                                                data-body="Preview profil perangkat desa."
+                                                                type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button">
+                                                                <i class="bi bi-pencil"></i> Edit
+                                                            </button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button">
+                                                                <i class="bi bi-trash"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="assets/images/foto.jpg" class="rounded-4"
+                                                            style="width:48px;height:48px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Foto" /></td>
+                                                    <td>Nama Kasi</td>
+                                                    <td class="text-muted">Kasi Pemerintahan</td>
+                                                    <td class="text-muted">08xxxxxxxxxx</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Kasi Pemerintahan"
+                                                                data-media="assets/images/foto.jpg"
+                                                                data-body="Preview profil perangkat desa."
+                                                                type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button">
+                                                                <i class="bi bi-pencil"></i> Edit
+                                                            </button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button">
+                                                                <i class="bi bi-trash"></i> Delete
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- 4. STATISTICS -->
+                            <div id="statistics" class="admin-card admin-section">
+                                <div class="admin-section-header">
+                                    <h2><i class="bi bi-graph-up-arrow"></i> STATISTIK</h2>
+                                    <p>Kelola kategori statistik serta visualisasi yang ditampilkan.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="d-flex gap-2 align-items-center justify-content-between flex-wrap">
+                                        <button class="btn btn-primary-admin" data-bs-toggle="modal"
+                                            data-bs-target="#addModal"><i class="bi bi-plus-circle"></i> Add
+                                            Data</button>
+                                        <div class="position-relative" style="min-width:280px;">
+                                            <i class="bi bi-search position-absolute"
+                                                style="left:14px;top:50%;transform:translateY(-50%);color:#166534;"></i>
+                                            <input type="search" class="form-control ps-5 rounded-4"
+                                                placeholder="Cari kategori statistik..." data-table-filter="tblStats" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-card">
+                                    <div class="row g-3">
+                                        <div class="col-12">
+                                            <div class="uploader">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <div class="fw-bold" style="color:#166534;">Preview Widget Chart
+                                                        </div>
+                                                        <div class="text-muted fw-semibold" style="font-size:13px;">
+                                                            Placeholder (Chart.js bisa ditambahkan bila diperlukan).
+                                                        </div>
+                                                    </div>
+                                                    <span class="pill warn">Demo</span>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <div class="d-flex gap-3 flex-wrap">
+                                                        <div class="rounded-4 border bg-light p-3"
+                                                            style="min-width:190px; flex:1;">
+                                                            <div class="fw-bold" style="color:#166534;"><i
+                                                                    class="bi bi-bar-chart-fill me-2"></i> Chart Type
+                                                            </div>
+                                                            <div class="text-muted fw-semibold">Bar / Donut (dummy)
+                                                            </div>
+                                                        </div>
+                                                        <div class="rounded-4 border bg-light p-3"
+                                                            style="min-width:190px; flex:1;">
+                                                            <div class="fw-bold" style="color:#166534;"><i
+                                                                    class="bi bi-list-ul me-2"></i> Data Mapping</div>
+                                                            <div class="text-muted fw-semibold">Kategory & nilai (dummy)
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <div class="table-responsive mt-1">
+                                                <table id="tblStats" class="table table-hover align-middle"
+                                                    aria-label="Statistics Table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Kategori</th>
+                                                            <th>Label</th>
+                                                            <th style="width:140px;">Nilai</th>
+                                                            <th style="width:240px;">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Pendidikan</td>
+                                                            <td class="text-muted">950</td>
+                                                            <td class="text-muted">Bar</td>
+                                                            <td>
+                                                                <div class="btn-group" role="group">
+                                                                    <button class="btn btn-outline-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#previewModal"
+                                                                        data-title="Pendidikan"
+                                                                        data-body="Preview kategori Pendidikan."
+                                                                        type="button">
+                                                                        <i class="bi bi-eye"></i> Preview
+                                                                    </button>
+                                                                    <button class="btn btn-primary-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#editModal" type="button"><i
+                                                                            class="bi bi-pencil"></i> Edit</button>
+                                                                    <button class="btn btn-danger-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal" type="button"><i
+                                                                            class="bi bi-trash"></i> Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Pekerjaan</td>
+                                                            <td class="text-muted">900</td>
+                                                            <td class="text-muted">Bar</td>
+                                                            <td>
+                                                                <div class="btn-group" role="group">
+                                                                    <button class="btn btn-outline-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#previewModal"
+                                                                        data-title="Pekerjaan"
+                                                                        data-body="Preview kategori Pekerjaan."
+                                                                        type="button">
+                                                                        <i class="bi bi-eye"></i> Preview
+                                                                    </button>
+                                                                    <button class="btn btn-primary-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#editModal" type="button"><i
+                                                                            class="bi bi-pencil"></i> Edit</button>
+                                                                    <button class="btn btn-danger-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal" type="button"><i
+                                                                            class="bi bi-trash"></i> Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Jenis Kelamin</td>
+                                                            <td class="text-muted">1635</td>
+                                                            <td class="text-muted">Donut</td>
+                                                            <td>
+                                                                <div class="btn-group" role="group">
+                                                                    <button class="btn btn-outline-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#previewModal"
+                                                                        data-title="Jenis Kelamin"
+                                                                        data-body="Preview kategori Jenis Kelamin."
+                                                                        type="button">
+                                                                        <i class="bi bi-eye"></i> Preview
+                                                                    </button>
+                                                                    <button class="btn btn-primary-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#editModal" type="button"><i
+                                                                            class="bi bi-pencil"></i> Edit</button>
+                                                                    <button class="btn btn-danger-admin btn-sm"
+                                                                        data-bs-toggle="modal"
+                                                                        data-bs-target="#deleteModal" type="button"><i
+                                                                            class="bi bi-trash"></i> Delete</button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 5. VILLAGE POTENTIALS -->
+                            <div id="potentials" class="admin-card admin-section">
+                                <div class="admin-section-header">
+                                    <h2><i class="bi bi-tree-fill"></i> POTENSI DESA</h2>
+                                    <p>Kelola potensi desa: gambar, judul, deskripsi, kategori.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="d-flex gap-2 align-items-center justify-content-between flex-wrap">
+                                        <button class="btn btn-primary-admin" data-bs-toggle="modal"
+                                            data-bs-target="#addModal"><i class="bi bi-plus-circle"></i> Add
+                                            Data</button>
+                                        <div class="position-relative" style="min-width:280px;">
+                                            <i class="bi bi-search position-absolute"
+                                                style="left:14px;top:50%;transform:translateY(-50%);color:#166534;"></i>
+                                            <input type="search" class="form-control ps-5 rounded-4"
+                                                placeholder="Cari potensi..." data-table-filter="tblPotentials" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-card">
+                                    <div class="table-responsive">
+                                        <table id="tblPotentials" class="table table-hover align-middle"
+                                            aria-label="Village Potentials">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:74px;">Image</th>
+                                                    <th>Title</th>
+                                                    <th>Description</th>
+                                                    <th style="width:160px;">Category</th>
+                                                    <th style="width:240px;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><img src="assets/images/desa.JPG" class="rounded-4"
+                                                            style="width:54px;height:54px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Potensi" /></td>
+                                                    <td>Pertanian</td>
+                                                    <td class="text-muted">Komoditas utama berupa padi, jagung, dan
+                                                        singkong.</td>
+                                                    <td class="text-muted">Pertanian</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Pertanian"
+                                                                data-media="assets/images/desa.JPG"
+                                                                data-body="Preview potensi Pertanian." type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button"><i class="bi bi-pencil"></i> Edit</button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button"><i class="bi bi-trash"></i>
+                                                                Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="assets/images/desa.JPG" class="rounded-4"
+                                                            style="width:54px;height:54px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Potensi" /></td>
+                                                    <td>Peternakan</td>
+                                                    <td class="text-muted">Peternakan kambing dan sapi menjadi sektor
+                                                        unggulan.</td>
+                                                    <td class="text-muted">Peternakan</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Peternakan"
+                                                                data-media="assets/images/desa.JPG"
+                                                                data-body="Preview potensi Peternakan." type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button"><i class="bi bi-pencil"></i> Edit</button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button"><i class="bi bi-trash"></i>
+                                                                Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="assets/images/desa.JPG" class="rounded-4"
+                                                            style="width:54px;height:54px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Potensi" /></td>
+                                                    <td>Wisata Alam</td>
+                                                    <td class="text-muted">Panorama alam asri dengan peluang wisata
+                                                        berbasis desa.</td>
+                                                    <td class="text-muted">Wisata</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Wisata Alam"
+                                                                data-media="assets/images/desa.JPG"
+                                                                data-body="Preview potensi Wisata Alam." type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button"><i class="bi bi-pencil"></i> Edit</button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button"><i class="bi bi-trash"></i>
+                                                                Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 6. UMKM PRODUCTS -->
+                            <div id="umkm" class="admin-card admin-section">
+                                <div class="admin-section-header">
+                                    <h2><i class="bi bi-shop"></i> PRODUK UMKM </h2>
+                                    <p>Kelola produk UMKM: gambar, nama, pemilik, kategori, deskripsi, kontak.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="d-flex gap-2 align-items-center justify-content-between flex-wrap">
+                                        <button class="btn btn-primary-admin" data-bs-toggle="modal"
+                                            data-bs-target="#addModal"><i class="bi bi-plus-circle"></i> Add
+                                            Data</button>
+                                        <div class="position-relative" style="min-width:280px;">
+                                            <i class="bi bi-search position-absolute"
+                                                style="left:14px;top:50%;transform:translateY(-50%);color:#166534;"></i>
+                                            <input type="search" class="form-control ps-5 rounded-4"
+                                                placeholder="Cari produk..." data-table-filter="tblUmkm" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="table-card">
+                                    <div class="table-responsive">
+                                        <table id="tblUmkm" class="table table-hover align-middle"
+                                            aria-label="UMKM Products">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width:74px;">Image</th>
+                                                    <th>Product Name</th>
+                                                    <th>Owner</th>
+                                                    <th style="width:150px;">Category</th>
+                                                    <th>Description</th>
+                                                    <th style="width:150px;">Contact</th>
+                                                    <th style="width:260px;">Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><img src="assets/images/desa.JPG" class="rounded-4"
+                                                            style="width:54px;height:54px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Produk" /></td>
+                                                    <td>Keripik Singkong</td>
+                                                    <td class="text-muted">Pak Ahmad</td>
+                                                    <td class="text-muted">Makanan</td>
+                                                    <td class="text-muted">Gurih khas singkong lokal tanpa bahan
+                                                        pengawet.</td>
+                                                    <td class="text-muted">08xxxxxxxxxx</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Keripik Singkong"
+                                                                data-media="assets/images/desa.JPG"
+                                                                data-body="Preview produk UMKM." type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button"><i class="bi bi-pencil"></i> Edit</button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button"><i class="bi bi-trash"></i>
+                                                                Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="assets/images/desa.JPG" class="rounded-4"
+                                                            style="width:54px;height:54px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Produk" /></td>
+                                                    <td>Jahe Instan</td>
+                                                    <td class="text-muted">Kelompok Wanita Tani</td>
+                                                    <td class="text-muted">Minuman Herbal</td>
+                                                    <td class="text-muted">Jahe merah, gula aren, rempah higienis.</td>
+                                                    <td class="text-muted">08xxxxxxxxxx</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Jahe Instan"
+                                                                data-media="assets/images/desa.JPG"
+                                                                data-body="Preview produk UMKM." type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button"><i class="bi bi-pencil"></i> Edit</button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button"><i class="bi bi-trash"></i>
+                                                                Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><img src="assets/images/desa.JPG" class="rounded-4"
+                                                            style="width:54px;height:54px;object-fit:cover;border:1px solid rgba(16,24,40,.10);"
+                                                            alt="Produk" /></td>
+                                                    <td>Anyaman Bambu</td>
+                                                    <td class="text-muted">UMKM Sumber Rejeki</td>
+                                                    <td class="text-muted">Kerajinan</td>
+                                                    <td class="text-muted">Produk dekoratif manual berbahan bambu lokal.
+                                                    </td>
+                                                    <td class="text-muted">08xxxxxxxxxx</td>
+                                                    <td>
+                                                        <div class="btn-group" role="group">
+                                                            <button class="btn btn-outline-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#previewModal"
+                                                                data-title="Anyaman Bambu"
+                                                                data-media="assets/images/desa.JPG"
+                                                                data-body="Preview produk UMKM." type="button">
+                                                                <i class="bi bi-eye"></i> Preview
+                                                            </button>
+                                                            <button class="btn btn-primary-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#editModal"
+                                                                type="button"><i class="bi bi-pencil"></i> Edit</button>
+                                                            <button class="btn btn-danger-admin btn-sm"
+                                                                data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                                                type="button"><i class="bi bi-trash"></i>
+                                                                Delete</button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 8. LOCATION -->
+                            <div id="location" class="admin-card admin-section">
+                                <div class="admin-section-header">
+                                    <h2><i class="bi bi-geo-alt-fill"></i> LOKASI</h2>
+                                    <p>Kelola URL Google Maps dan informasi kontak kantor desa.</p>
+                                </div>
+
+                                <div class="section-actions">
+                                    <div class="row g-3">
+                                        <div class="col-lg-7">
+                                            <div class="uploader">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div>
+                                                        <div class="fw-bold" style="color:#166534;">Google Maps URL
+                                                        </div>
+                                                        <div class="text-muted fw-semibold" style="font-size:13px;">
+                                                            Placeholder (tidak memuat iframe untuk frontend-only demo).
+                                                        </div>
+                                                    </div>
+                                                    <span class="pill ok">Active</span>
+                                                </div>
+                                                <div class="mt-3">
+                                                    <div class="bg-light border rounded-4 p-3">
+                                                        <div class="text-muted fw-semibold"
+                                                            style="font-size:13px; word-break: break-word;">
+                                                            https://www.google.com/maps?q=-8.235546364317507,111.34908793723008
+                                                        </div>
+                                                    </div>
+                                                    <div class="mt-3">
+                                                        <a href="https://www.google.com/maps?q=-8.235546364317507,111.34908793723008"
+                                                            target="_blank" class="btn btn-primary-admin">
+                                                            <i class="bi bi-map"></i> Buka Google Maps
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-5">
+                                            <div class="uploader h-100">
+                                                <div class="fw-bold" style="color:#166534;">Informasi</div>
+                                                <div class="mt-3">
+                                                    <div class="status-row">
+                                                        <div class="fw-bold">Address</div>
+                                                        <div class="text-muted fw-semibold text-end">Kantor Desa
+                                                            Pagerkidul, Pacitan</div>
+                                                    </div>
+                                                    <div class="status-row">
+                                                        <div class="fw-bold">Phone</div>
+                                                        <div class="text-muted fw-semibold text-end">(0357) xxxx</div>
+                                                    </div>
+                                                    <div class="status-row">
+                                                        <div class="fw-bold">Email</div>
+                                                        <div class="text-muted fw-semibold text-end">
+                                                            desapagerkidul@gmail.com</div>
+                                                    </div>
+                                                    <div class="status-row">
+                                                        <div class="fw-bold">Working Hours</div>
+                                                        <div class="text-muted fw-semibold text-end">Senin - Jumat 08.00
+                                                            - 15.00</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex gap-2 mt-3 flex-wrap">
+                                                    <button class="btn btn-primary-admin btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#editModal" data-title="Location"
+                                                        data-body="Mengubah alamat, telepon, email, jam pelayanan, dan URL Maps."
+                                                        type="button">
+                                                        <i class="bi bi-pencil"></i> Edit
+                                                    </button>
+                                                    <button class="btn btn-outline-admin btn-sm" data-bs-toggle="modal"
+                                                        data-bs-target="#previewModal" data-title="Location"
+                                                        data-body="Preview informasi lokasi." type="button">
+                                                        <i class="bi bi-eye"></i> Preview
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Right panel -->
+                        <div class="col-lg-4 admin-right">
+                            <div class="widget">
+                                <h3><i class="bi bi-clock-history"></i> Recent Activities</h3>
+                                <div class="mt-3 timeline">
+                                    <div class="t-item">
+                                        <span class="t-dot"></span>
+                                        <p class="t-title">Update Gallery</p>
+                                        <div class="t-time">Baru saja • 5 menit lalu</div>
+                                    </div>
+                                    <div class="t-item">
+                                        <span class="t-dot"></span>
+                                        <p class="t-title">Edit UMKM Produk</p>
+                                        <div class="t-time">Hari ini • 09:10</div>
+                                    </div>
+                                    <div class="t-item">
+                                        <span class="t-dot"></span>
+                                        <p class="t-title">Perubahan Statistik</p>
+                                        <div class="t-time">Kemarin • 17:42</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget mt-3">
+                                <h3><i class="bi bi-newspaper"></i> Latest Updates</h3>
+                                <div class="mt-3">
+                                    <div class="p-3 rounded-4 bg-light border mb-2">
+                                        <div class="fw-bold" style="color:#166534;">Notifikasi</div>
+                                        <div class="text-muted fw-semibold" style="font-size:13px;">3 konten menunggu
+                                            review admin (dummy).</div>
+                                    </div>
+                                    <div class="p-3 rounded-4 bg-light border mb-2">
+                                        <div class="fw-bold" style="color:#166534;">CMS News</div>
+                                        <div class="text-muted fw-semibold" style="font-size:13px;">Optimasi performa
+                                            dashboard berhasil (dummy).</div>
+                                    </div>
+                                    <div class="p-3 rounded-4 bg-light border">
+                                        <div class="fw-bold" style="color:#166534;">Sinkronisasi</div>
+                                        <div class="text-muted fw-semibold" style="font-size:13px;">Sinkronisasi data
+                                            siap (frontend-only).</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget mt-3">
+                                <h3><i class="bi bi-hdd-network"></i> System Status</h3>
+                                <div class="mt-3">
+                                    <div class="status-row">
+                                        <div>
+                                            <div class="fw-bold">Dashboard</div>
+                                            <div class="text-muted fw-semibold" style="font-size:13px;">UI berjalan
+                                                normal</div>
+                                        </div>
+                                        <span class="pill ok">OK</span>
+                                    </div>
+                                    <div class="status-row">
+                                        <div>
+                                            <div class="fw-bold">Media</div>
+                                            <div class="text-muted fw-semibold" style="font-size:13px;">Upload
+                                                placeholder</div>
+                                        </div>
+                                        <span class="pill warn">WARN</span>
+                                    </div>
+                                    <div class="status-row">
+                                        <div>
+                                            <div class="fw-bold">Data Source</div>
+                                            <div class="text-muted fw-semibold" style="font-size:13px;">Dummy data</div>
+                                        </div>
+                                        <span class="pill ok">OK</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="widget mt-3">
+                                <h3><i class="bi bi-lightbulb"></i> Quick Tips</h3>
+                                <div class="mt-3">
+                                    <div class="p-3 rounded-4 bg-light border mb-2">
+                                        <div class="fw-bold" style="color:#166534;">Preview sebelum publish</div>
+                                        <div class="text-muted fw-semibold" style="font-size:13px;">Gunakan tombol
+                                            Preview pada setiap tabel.</div>
+                                    </div>
+                                    <div class="p-3 rounded-4 bg-light border">
+                                        <div class="fw-bold" style="color:#166534;">Gunakan pencarian</div>
+                                        <div class="text-muted fw-semibold" style="font-size:13px;">Filter tabel
+                                            berdasarkan kata kunci (client-side dummy).</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- ===== Modals ===== -->
+
+    <div class="modal fade" id="addModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" style="color:#166534;" id="addModalTitle">Add Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-light border" id="addModalAlert" style="background:#F8FAFC;">
+                        <div class="fw-bold" style="color:#166534;"><i class="bi bi-exclamation-circle me-2"></i> Dummy
+                            Form</div>
+                        <div class="text-muted fw-semibold">Tidak ada backend. Form ini hanya placeholder UI.</div>
+                    </div>
+
+                    <div class="row g-3" id="addModalForm">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Field A</label>
+                            <input type="text" class="form-control rounded-4" placeholder="Contoh: Judul konten" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Field B</label>
+                            <input type="text" class="form-control rounded-4" placeholder="Contoh: Kategori" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Description</label>
+                            <textarea class="form-control rounded-4" rows="4"
+                                placeholder="Masukkan deskripsi..."></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Upload</label>
+                            <div class="uploader">
+                                <img class="preview-img" src="assets/images/desa.JPG" alt="placeholder" />
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-outline-admin btn-sm"><i
+                                            class="bi bi-upload"></i> Choose File (Placeholder)</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-admin" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary-admin" id="addModalSave">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" style="color:#166534;" id="editModalTitle">Edit Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-light border" id="editModalAlert" style="background:#F8FAFC;">
+                        <div class="fw-bold" style="color:#166534;"><i class="bi bi-pencil-square me-2"></i> Edit
+                            (Pre-filled)</div>
+                        <div class="text-muted fw-semibold">Form ini tidak menyimpan data (frontend-only). Namun nilai
+                            input akan terisi otomatis berdasarkan data dummy saat tombol Edit ditekan.</div>
+                    </div>
+
+                    <div class="row g-3" id="editModalForm">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Field A</label>
+                            <input id="editFieldA" type="text" class="form-control rounded-4" value="" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Field B</label>
+                            <input id="editFieldB" type="text" class="form-control rounded-4" value="" />
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Description</label>
+                            <textarea id="editDescription" class="form-control rounded-4" rows="4"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Upload Preview (optional)</label>
+                            <div class="uploader">
+                                <img id="editMediaPreview" class="preview-img" src="assets/images/desa.JPG"
+                                    alt="preview" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-admin" data-bs-dismiss="modal">Tutup</button>
+                    <button type="button" class="btn btn-primary-admin" id="editModalSave">Simpan Perubahan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+            <div class="modal-content border-0" style="border-radius:20px;">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" style="color:#b91c1c;">Delete Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-danger mb-0" style="border-radius:16px;">
+                        <div class="fw-bold"><i class="bi bi-trash3 me-2"></i> Yakin ingin menghapus <span id="deleteModalLabel">data ini</span>?</div>
+                        <div class="text-muted fw-semibold">Data yang dihapus tidak bisa dikembalikan.</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-admin" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-danger-admin" id="deleteModalConfirm">Ya, Hapus</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="previewModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" style="color:#166534;">Preview Content</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="previewBody">
+                    <div class="alert alert-light border" style="background:#F8FAFC;">
+                        <div class="fw-bold" style="color:#166534;"><i class="bi bi-eye me-2"></i> Preview</div>
+                        <div class="text-muted fw-semibold">Klik tombol Preview pada tabel untuk melihat konten.</div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-admin" data-bs-dismiss="modal">Tutup</button>
+                    <a class="btn btn-primary-admin" href="#" onclick="return false;">Publish (Dummy)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="assets/js/supabase-config.js"></script>
+    <script src="assets/js/supabase-client.js"></script>
+    <script src="assets/js/admin.js"></script>
+    <script src="assets/js/admin-auth.js"></script>
+    <script src="assets/js/admin-crud.js"></script>
+
+</body>
+</html>
+
