@@ -1,10 +1,3 @@
--- =====================================================
--- Desa Pagerkidul — seed data (starter content)
--- Run AFTER schema.sql in the Supabase SQL Editor.
--- Replace placeholder names/photos with real data later
--- via the admin dashboard.
--- =====================================================
-
 -- profil desa (singleton)
 insert into profil_desa (id, visi, misi, deskripsi, luas_wilayah, jumlah_penduduk, jumlah_dusun,
                          email, telepon, alamat, jam_pelayanan, lat, lng)
